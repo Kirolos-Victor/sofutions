@@ -40,7 +40,7 @@
                                     <td>{{ company.id }}</td>
                                     <td>{{ company.name }}</td>
                                     <td>{{ company.email }}</td>
-                                    <td><img :src="'/storage/images/'+company.logo"></td>
+                                    <td><img :src="company.logo"></td>
                                     <td>{{ company.website }}</td>
 
                                     <td><a class="btn btn-secondary mr-3"

@@ -32,7 +32,7 @@
                     <div class="form-group">
                         <label for="logo">Logo</label>
                         <input type="file" id="logo" class="form-control" name="logo">
-                        <img class="mt-3" src="{{url('storage/images/'.$company->logo)}}" style="width: 100px; height: 100px">
+                        <img class="mt-3" src="{{url($company->logo)}}" style="width: 100px; height: 100px">
 
                     </div>
                 </div>

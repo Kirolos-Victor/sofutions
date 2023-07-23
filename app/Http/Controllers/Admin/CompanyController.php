@@ -36,9 +36,9 @@ class CompanyController extends Controller
 
     public function store(StoreCompanyRequest $request): RedirectResponse
     {
-        $logoName = (new StoreLogoService())->execute($request);
+        $logoPath = (new StoreLogoService())->execute($request);
         $data = $request->validated();
-        $data['logo'] = $logoName;
+        $data['logo'] = $logoPath;
         Company::create($data);
         session()->flash('success', 'You have added a company successfully');
         return redirect()->route('companies.index');
@@ -53,8 +53,8 @@ class CompanyController extends Controller
     {
         $data = $request->validated();
         if ($request->has('logo')) {
-            $fileName = (new UpdateLogoService())->execute($request, $company->logo);
-            $data['logo'] = $fileName;
+            $logoPath = (new UpdateLogoService())->execute($request, $company->logoName);
+            $data['logo'] = $logoPath;
         }
         $company->update($data);
         session()->flash('success', 'You have update a company successfully');
@@ -71,7 +71,7 @@ class CompanyController extends Controller
             $delete = false;
         }
         if ($delete) {
-            (new DeleteLogoService())->execute($company->logo);
+            (new DeleteLogoService())->execute($company->logoName);
             session()->flash('success', 'You have delete a company successfully');
         }
     }

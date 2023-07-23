@@ -3,13 +3,14 @@
 namespace App\Services;
 
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 
 class DeleteLogoService
 {
-    public function execute($oldFileName): void
+    public function execute($logoName): void
     {
-        if (File::exists(storage_path('app/public/images/' . $oldFileName))) {
-            File::delete(storage_path('app/public/images/' . $oldFileName));
+        if (Storage::disk('s3')->exists($logoName)) {
+            Storage::disk('s3')->delete($logoName);
         }
     }
 }
